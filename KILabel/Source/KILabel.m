@@ -547,19 +547,22 @@ NSString * const KILabelLinkKey = @"link";
     textBounds.origin = bounds.origin;
     textBounds.size.width = ceil(textBounds.size.width);
     textBounds.size.height = ceil(textBounds.size.height);
-
+    
     if (textBounds.size.height < bounds.size.height)
     {
         // Take verical alignment into account
         CGFloat offsetY = (bounds.size.height - textBounds.size.height) / 2.0;
         textBounds.origin.y += offsetY;
     }
-
+    
     // Restore the old container state before we exit under any circumstances
     _textContainer.size = savedTextContainerSize;
     _textContainer.maximumNumberOfLines = savedTextContainerNumberOfLines;
     
-    return textBounds;
+    
+    // Note: The code above does not work well so just use super's implementation for now
+    return [super textRectForBounds:bounds limitedToNumberOfLines:numberOfLines];
+    //    return textBounds;
 }
 
 - (void)drawTextInRect:(CGRect)rect
