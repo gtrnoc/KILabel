@@ -656,7 +656,8 @@ NSString * const KILabelLinkKey = @"link";
 {
     [super touchesMoved:touches withEvent:event];
     
-    _isTouchMoved = YES;
+    // This causes the selection handler not to be called for a lot of standard 'tap' actions, so leave disabled for now
+//    _isTouchMoved = YES;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
